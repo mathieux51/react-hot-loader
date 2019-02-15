@@ -1,5 +1,5 @@
 import { hot } from 'react-hot-loader/root'
-import { setConfig } from 'react-hot-loader'
+// import { setConfig } from 'react-hot-loader'
 import * as React from 'react'
 import styled from 'styled-components'
 import emoStyled from 'react-emotion'
@@ -115,10 +115,16 @@ const InApp = () => (
   </h1>
 )
 
+const Span = styled.span`
+  font-size: 4rem;
+  color: gold;
+`
+
 const App = () => (
-  <Counter>
-    <InApp />
-  </Counter>
+    <Span>🦉</Span>
+  // <Counter>
+  //   {/* <InApp /> */}
+  // </Counter>
 )
 
 //   return App;

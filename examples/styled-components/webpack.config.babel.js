@@ -14,29 +14,34 @@ module.exports = {
   module: {
     rules: [
       {
-        //exclude: /node_modules|packages/,  // should work without exclude
-        test: /\.js$/,
-        use: ['react-hot-loader/webpack', 'babel-loader'],
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: [
+          'react-hot-loader/webpack',
+          {
+            loader: 'babel-loader',
+            options: {
+              babelrc: false,
+              cacheDirectory: true,
+              presets: ['@babel/preset-env', '@babel/preset-react'],
+              plugins: [
+                'react-hot-loader/babel',
+                '@babel/plugin-syntax-dynamic-import',
+                '@babel/plugin-proposal-class-properties',
+                'babel-plugin-styled-components',
+              ],
+            },
+          },
+        ],
       },
     ],
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
-    alias: {
-      // 'react-dom': '@hot-loader/react-dom',
-      // react: path.resolve(path.join(__dirname, './node_modules/react')),
-      // 'react-hot-loader': path.resolve(
-      //   path.join(__dirname, './node_modules/react-hot-loader'),
-      // ),
-      // 'babel-core': path.resolve(
-      //   path.join(__dirname, './node_modules/@babel/core'),
-      // ),
-    },
   },
   plugins: [
     new HtmlWebpackPlugin({
-      // uncomment this line to test RHL in "secure" env
-      // template: "index_csp.html",
+      template: "index.html",
     }),
     new webpack.NamedModulesPlugin(),
   ],
